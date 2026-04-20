@@ -1,0 +1,7 @@
+.app-container { padding: 40px; }
+.app-content { max-width: 1200px; margin: 0 auto; }
+.loading-text { color: var(--brand-orange); font-weight: bold; margin-top: 10px; }
+.message { padding: 10px 15px; border-radius: 6px; margin-top: 10px; }
+.message.error { color: #D32F2F; background-color: #FFEBEE; }
+.message.success { color: #388E3C; background-color: #E8F5E9; }
+.dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; }

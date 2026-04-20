@@ -1,0 +1,4 @@
+.header { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid var(--brand-orange); }
+.header h1 { color: var(--brand-neutral); margin: 0; font-size: 32px; }
+.header span { color: var(--brand-orange); }
+.header p { color: var(--brand-subtext); margin: 5px 0 0 0; }

@@ -1,0 +1,7 @@
+.widget-card { padding: 24px; background-color: var(--brand-white); border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+.widget-card.full-width { grid-column: 1 / -1; }
+.widget-card h3 { color: var(--brand-neutral); margin-top: 0; }
+.metric-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+.metric-item { flex: 1; min-width: 200px; padding: 20px; border-left: 4px solid var(--brand-orange); background-color: #F9F9FA; border-radius: 0 8px 8px 0; }
+.metric-item h4 { color: var(--brand-subtext); margin: 0 0 8px 0; font-size: 14px; font-weight: normal; }
+.metric-item p { color: var(--brand-neutral); font-size: 28px; font-weight: bold; margin: 0; }
