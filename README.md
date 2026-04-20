@@ -2,7 +2,7 @@
 
 A modern, fast, and responsive Single Page Application (SPA) built to ingest data files (CSV/Excel), automatically detect their schemas, and generate interactive visual reports. It features an enterprise-grade PDF export pipeline that connects to a headless Python backend for pixel-perfect document generation.
 
-## ✨ Features
+## Features
 
 * **Lightning Fast:** Bootstrapped with Vite for instant server start and rapid Hot Module Replacement (HMR).
 * **Smart File Uploads:** Drag-and-drop interface using `react-dropzone`. Uploaded files are sent to the backend for automatic schema detection and cleaning.
@@ -10,7 +10,7 @@ A modern, fast, and responsive Single Page Application (SPA) built to ingest dat
 * **Component-Driven Visualizations:** Modular chart widgets built with `recharts` (Bar Charts, Pie Charts, KPI Metric Cards, and Composed Line/Bar charts).
 * **Enterprise PDF Export:** Bypasses standard front-end canvas limitations by requesting a high-resolution, natively rendered PDF from the Python backend.
 
-## 🛠 Tech Stack
+## Tech Stack
 
 * **Framework:** React 18
 * **Build Tool:** Vite
@@ -19,7 +19,7 @@ A modern, fast, and responsive Single Page Application (SPA) built to ingest dat
 * **File Handling:** React Dropzone
 * **Styling:** Standard CSS (with global CSS variables for brand theming)
 
-## 📁 Project Structure
+## Project Structure
 ```text
 src/
 ├── main.jsx                 # Application entry point & Router provider
