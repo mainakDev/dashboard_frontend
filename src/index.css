@@ -5,13 +5,51 @@
   --brand-bg: #F4F5F7;
   --brand-border: rgba(48, 44, 65, 0.1);
   --brand-subtext: rgba(48, 44, 65, 0.6);
+  
+  /* --- NEW: Define the font family variable here --- */
+  --font-family-sans: 'Aspira', system-ui, -apple-system, sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, sans-serif;
+  /* --- FIX: Apply the Aspira font to the body --- */
+  font-family: var(--font-family-sans);
   background-color: var(--brand-bg);
   -webkit-font-smoothing: antialiased;
 }
 
 * { box-sizing: border-box; }
+
+/* Ensure Recharts also picks up the font instead of defaulting to Arial */
+.recharts-wrapper {
+  font-family: var(--font-family-sans) !important;
+}
+
+/* --- CUSTOM BRAND FONTS --- */
+
+/* Regular (Standard text) */
+@font-face {
+  font-family: 'Aspira';
+  src: url('./assets/fonts/Durotype_-_Aspira-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Medium (Subheadings / Bold-ish text) */
+@font-face {
+  font-family: 'Aspira';
+  src: url('./assets/fonts/Durotype_-_Aspira-Light.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bold (Headers / Titles) */
+@font-face {
+  font-family: 'Aspira';
+  src: url('./assets/fonts/Durotype_-_Aspira-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}

@@ -7,6 +7,7 @@ import CoachPerformanceWidget from '../components/widgets/CoachPerformanceWidget
 import TopPerformers from '../components/widgets/TopPerformers';
 import ReportHeader from '../components/ReportHeader';
 import ReportFooter from '../components/ReportFooter';
+import DominantPrograms from '../components/widgets/DominantPrograms';
 
 export default function DashboardView() {
   const navigate = useNavigate();
@@ -74,6 +75,7 @@ export default function DashboardView() {
             {data.Tutoring_Course_Data && (<BarChartWidget data={data.Tutoring_Course_Data} dataKey="course_code" title="Tutoring Events per Course" />)}
             {data.Student_Activity && (<BarChartWidget data={data.Student_Activity} dataKey="program_enrolled" title="Students per Program" />)}
           </div>
+          {data.Tutoring_Course_Data && <DominantPrograms data={data.Tutoring_Course_Data} />}
           <ReportFooter />
         </div>
       </div>

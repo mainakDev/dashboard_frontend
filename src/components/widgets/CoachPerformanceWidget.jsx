@@ -49,7 +49,7 @@ export default function CoachPerformanceWidget({ data, title }) {
           {/* The Data Visuals */}
           <Bar yAxisId="left" dataKey="# of Expected Sessions" fill="#5D5875" name="Expected Sessions" radius={[4, 4, 0, 0]} />
           <Bar yAxisId="left" dataKey="# of Actual Sessions" fill={THEME.orange} name="Actual Sessions" radius={[4, 4, 0, 0]} />
-          <Line yAxisId="right" type="monotone" dataKey="Total LCE Usage" stroke="#00C49F" strokeWidth={3} name="Total LCE Usage" dot={{ r: 4 }} />
+          <Line yAxisId="right" type="monotone" dataKey="Total LCE Usage" stroke="#9B86F7" strokeWidth={3} name="Total LCE Usage" dot={{ r: 4 }} />
         
         </ComposedChart>
       </ResponsiveContainer>
