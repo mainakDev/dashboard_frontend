@@ -8,11 +8,16 @@ import TopPerformers from '../components/widgets/TopPerformers';
 import ReportHeader from '../components/ReportHeader';
 import ReportFooter from '../components/ReportFooter';
 import DominantPrograms from '../components/widgets/DominantPrograms';
+import CompletedProjects from '../components/widgets/CompletedProjects';
+import UpcomingInitiatives from '../components/widgets/UpcomingInitiatives';
+import ConfluenceLink from '../components/widgets/ConfluenceLink';
 
 export default function DashboardView() {
   const navigate = useNavigate();
   const [data, setData] = useState({});
   const [isDownloading, setIsDownloading] = useState(false);
+  // --- NEW: Track hover state for the download button ---
+  const [isHovered, setIsHovered] = useState(false);
   const [searchParams] = useSearchParams();
   const isPrintMode = searchParams.get('print') === 'true';
 
@@ -54,17 +59,33 @@ export default function DashboardView() {
             <button onClick={() => navigate('/')} style={{ background: 'none', border: 'none', color: '#302C41', fontWeight: 'bold', fontSize: '16px', cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <span style={{ fontSize: '20px' }}>←</span> Back to File Upload
             </button>
-            <button onClick={handleDownloadPDF} disabled={isDownloading} style={{ backgroundColor: '#EB7100', color: 'white', padding: '12px 24px', borderRadius: '6px', fontWeight: 'bold', border: 'none', cursor: 'pointer', opacity: isDownloading ? 0.7 : 1, boxShadow: '0 4px 6px rgba(235, 113, 0, 0.2)' }}>
-              {isDownloading ? 'Generating PDF...' : '📥 Download High-Res PDF'}
+            {/* --- UPDATED: Hover Events Added --- */}
+            <button 
+              onClick={handleDownloadPDF} 
+              disabled={isDownloading}
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+              style={{ 
+                // Toggle background color based on hover state
+                backgroundColor: isHovered && !isDownloading ? '#242035' : '#EB7100', 
+                color: 'white', 
+                padding: '12px 24px', 
+                borderRadius: '6px', 
+                fontWeight: 'bold', 
+                border: 'none', 
+                cursor: isDownloading ? 'not-allowed' : 'pointer', 
+                opacity: isDownloading ? 0.7 : 1, 
+                boxShadow: '0 4px 6px rgba(235, 113, 0, 0.2)',
+                transition: 'background-color 0.2s ease' // Smooth transition effect
+              }}
+            >
+              {isDownloading ? 'Generating PDF...' : 'Download High-Res PDF'}
             </button>
           </div>
         )}
 
         <div style={{ backgroundColor: 'white', padding: '40px', borderRadius: '8px', boxShadow: isPrintMode ? 'none' : '0 4px 12px rgba(0,0,0,0.05)' }}>
-          <div style={{ textAlign: 'center', borderBottom: '1px solid rgba(48, 44, 65, 0.1)', paddingBottom: '24px', marginBottom: '32px' }}>
-            <h1 style={{ color: '#302C41', margin: '0 0 8px 0' }}>ADO | Team Weekly Health and Project Overview</h1>
-            <p style={{ color: '#EB7100', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px', margin: 0, fontSize: '14px' }}>Performance Overview</p>
-            </div>
+          {/* Note: I removed the hardcoded header text that was sitting above <ReportHeader/> here to clean it up! */}
           <ReportHeader />
           {data.Coach_Performance && (<TopPerformers data={data.Coach_Performance} />)}
           <div className="dashboard-grid">
@@ -74,8 +95,11 @@ export default function DashboardView() {
             {data.Tutoring_Team_Data && (<PieChartWidget data={data.Tutoring_Team_Data} dataKey="team_name" title="Tutoring Sessions by Team" />)}
             {data.Tutoring_Course_Data && (<BarChartWidget data={data.Tutoring_Course_Data} dataKey="course_code" title="Tutoring Events per Course" />)}
             {data.Student_Activity && (<BarChartWidget data={data.Student_Activity} dataKey="program_enrolled" title="Students per Program" />)}
+            {data.Manual_Inputs?.completedProjects && (<CompletedProjects text={data.Manual_Inputs.completedProjects} />)}
           </div>
           {data.Tutoring_Course_Data && <DominantPrograms data={data.Tutoring_Course_Data} />}
+          {data.Manual_Inputs?.upcomingInitiatives && (<UpcomingInitiatives text={data.Manual_Inputs.upcomingInitiatives} />)}
+          <ConfluenceLink />
           <ReportFooter />
         </div>
       </div>

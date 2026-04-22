@@ -30,6 +30,16 @@ export default function UploadView() {
     setTimeout(() => setMessages([]), 5000);
   };
 
+  const handleManualInputChange = (field, value) => {
+    setDashboardData(prev => ({
+      ...prev,
+      Manual_Inputs: {
+        ...(prev.Manual_Inputs || {}),
+        [field]: value
+      }
+    }));
+  };
+
   const hasData = Object.keys(dashboardData).length > 0;
 
   return (
@@ -52,6 +62,37 @@ export default function UploadView() {
                   <button onClick={() => handleRemoveFile(tag)} style={{ backgroundColor: '#FFEBEE', color: '#D32F2F', border: 'none', padding: '8px 16px', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold' }}>Remove</button>
                 </div>
               ))}
+            </div>
+          </div>
+        )}
+
+        {hasData && (
+          <div style={{ backgroundColor: '#FFFFFF', padding: '32px', borderRadius: '12px', boxShadow: '0 4px 12px rgba(0,0,0,0.05)', marginBottom: '40px' }}>
+            <h3 style={{ color: '#302C41', marginTop: 0, marginBottom: '8px' }}>📝 Executive Summary Notes</h3>
+            <p style={{ color: '#666', fontSize: '14px', marginBottom: '24px' }}>Add bullet points to your report. Enter multiple items by typing each on a new line.</p>
+            
+            <div style={{ marginBottom: '24px' }}>
+              <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '10px', color: '#302C41' }}>
+                Successfully Completed Projects
+              </label>
+              <textarea 
+                value={dashboardData.Manual_Inputs?.completedProjects || ''}
+                onChange={(e) => handleManualInputChange('completedProjects', e.target.value)}
+                placeholder="Example:&#10;Launched new UX/UI curriculum&#10;Onboarded 50 new coaches"
+                style={{ width: '100%', height: '120px', padding: '16px', borderRadius: '8px', border: '1px solid #CCC', fontFamily: 'inherit', fontSize: '15px', resize: 'vertical' }}
+              />
+            </div>
+
+            <div>
+              <label style={{ display: 'block', fontWeight: 'bold', marginBottom: '10px', color: '#302C41' }}>
+                Upcoming Initiatives
+              </label>
+              <textarea 
+                value={dashboardData.Manual_Inputs?.upcomingInitiatives || ''}
+                onChange={(e) => handleManualInputChange('upcomingInitiatives', e.target.value)}
+                placeholder="Example:&#10;Advanced full-stack capstone projects&#10;AI-integrated web development modules"
+                style={{ width: '100%', height: '120px', padding: '16px', borderRadius: '8px', border: '1px solid #CCC', fontFamily: 'inherit', fontSize: '15px', resize: 'vertical' }}
+              />
             </div>
           </div>
         )}
