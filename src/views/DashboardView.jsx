@@ -5,6 +5,8 @@ import PieChartWidget from '../components/widgets/PieChartWidget';
 import BarChartWidget from '../components/widgets/BarChartWidget';
 import CoachPerformanceWidget from '../components/widgets/CoachPerformanceWidget';
 import TopPerformers from '../components/widgets/TopPerformers';
+import ReportHeader from '../components/ReportHeader';
+import ReportFooter from '../components/ReportFooter';
 
 export default function DashboardView() {
   const navigate = useNavigate();
@@ -61,34 +63,18 @@ export default function DashboardView() {
           <div style={{ textAlign: 'center', borderBottom: '1px solid rgba(48, 44, 65, 0.1)', paddingBottom: '24px', marginBottom: '32px' }}>
             <h1 style={{ color: '#302C41', margin: '0 0 8px 0' }}>ADO | Team Weekly Health and Project Overview</h1>
             <p style={{ color: '#EB7100', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '2px', margin: 0, fontSize: '14px' }}>Performance Overview</p>
-          </div>
-          {/* --- NEW: The AI-Style Text Summary --- */}
-          {data.Coach_Performance && (
-            <TopPerformers data={data.Coach_Performance} />
-          )}
+            </div>
+          <ReportHeader />
+          {data.Coach_Performance && (<TopPerformers data={data.Coach_Performance} />)}
           <div className="dashboard-grid">
             {data.Coaching_Summary && <MetricCards data={data.Coaching_Summary} title="Coaching Key Metrics" />}
             {data.Coach_Performance && <CoachPerformanceWidget data={data.Coach_Performance} title="Coach Performance Overview" />}
             {data.Event_Team_Data && <PieChartWidget data={data.Event_Team_Data} dataKey="team_name" title="Event Team Distribution" />}
-            
-            {/* --- NEW: Table 1 --- */}
-            {/* Generates a Pie Chart based on team_name */}
-            {data.Tutoring_Team_Data && (
-              <PieChartWidget data={data.Tutoring_Team_Data} dataKey="team_name" title="Tutoring Sessions by Team" />
-            )}
-
-            {/* --- NEW: Table 2 --- */}
-            {/* Generates a Bar Chart counting events per course_code */}
-            {data.Tutoring_Course_Data && (
-              <BarChartWidget data={data.Tutoring_Course_Data} dataKey="course_code" title="Tutoring Events per Course" />
-            )}
-
-            {/* --- FIXED: Student Activity --- */}
-            {/* Removed the extra Pie Chart, leaving only the Bar Chart */}
-            {data.Student_Activity && (
-              <BarChartWidget data={data.Student_Activity} dataKey="program_enrolled" title="Students per Program" />
-            )}
+            {data.Tutoring_Team_Data && (<PieChartWidget data={data.Tutoring_Team_Data} dataKey="team_name" title="Tutoring Sessions by Team" />)}
+            {data.Tutoring_Course_Data && (<BarChartWidget data={data.Tutoring_Course_Data} dataKey="course_code" title="Tutoring Events per Course" />)}
+            {data.Student_Activity && (<BarChartWidget data={data.Student_Activity} dataKey="program_enrolled" title="Students per Program" />)}
           </div>
+          <ReportFooter />
         </div>
       </div>
     </div>
